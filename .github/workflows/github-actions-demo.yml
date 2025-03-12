@@ -23,12 +23,12 @@ jobs:
         run: echo Hello, Kuldip! Welcome to the world of GitHub Actions!
 
       # add java version action
-      - name: Set up JDK 21
+      - name: SetUp java version
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '21'
-          cache: 'gradle'
+          distribution: 'temurin'
+          cache: maven
 
       # Test secret in GitHub vault
       - name: Test Secret
