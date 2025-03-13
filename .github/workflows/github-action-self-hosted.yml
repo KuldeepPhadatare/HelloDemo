@@ -11,6 +11,11 @@ jobs:
   build_and_push:
     runs-on: self-hosted
 
+    env:
+      java-version: 21
+      java-distribution: 'temurin'
+      java-cache: maven
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -18,9 +23,9 @@ jobs:
       - name: SetUp java version
         uses: actions/setup-java@v3
         with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
+          java-version: ${{ env.java-version }}
+          distribution: ${{ env.java-distribution }}
+          cache: ${{ env.java-cache }}
 
       - name: Build Maven project
         run: mvn clean install
