@@ -1,35 +1,39 @@
-# This is a basic workflow to help you get started with Actions
-
-name: github-actions-demo
-
-on:
-  push:
-    branches:
-        main
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, Kuldip! Welcome to the world of GitHub Actions!
-
-      # add java version action
-      - name: SetUp java version
-        uses: actions/setup-java@v3
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-
-      # Test secret in GitHub vault
-      - name: Test Secret
-        run: echo ${{ secrets.TEST_SECRET_NAME }}
+## This is a basic workflow to help you get started with Actions
+#
+#name: github-actions-demo
+#
+#on:
+#  push:
+#    branches:
+#        main
+#
+#  # Allows you to run this workflow manually from the Actions tab
+#  workflow_dispatch:
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      # Runs a single command using the runners shell
+#      - name: Run a one-line script
+#        run: echo Hello, Kuldip! Welcome to the world of GitHub Actions!
+#
+#      # add java version action
+#      - name: SetUp java version
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: '21'
+#          distribution: 'temurin'
+#          cache: maven
+#
+#      # Test secret in GitHub vault
+#      - name: Test Secret
+#        run: echo ${{ secrets.TEST_SECRET_NAME }}
+#
+#      #GitHub Repositority path print
+#      - name: Print GitHub Repository Path
+#        run: echo $GITHUB_REPOSITORY
