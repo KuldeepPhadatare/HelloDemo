@@ -6,6 +6,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      TAG_NAME:
+        description: 'Tag Name'
+        required: true
+        default: 'latest'
 
 jobs:
   build_and_push:
@@ -15,11 +20,16 @@ jobs:
       java-version: 21
       java-distribution: 'temurin'
       java-cache: maven
+      TAG_NAME: ${{ github.event.inputs.TAG_NAME }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Build Maven project
+        run: mvn clean install
+
+      #Test Env variable and use
       - name: SetUp java version
         uses: actions/setup-java@v3
         with:
@@ -27,6 +37,15 @@ jobs:
           distribution: ${{ env.java-distribution }}
           cache: ${{ env.java-cache }}
 
-      - name: Build Maven project
-        run: mvn clean install
+      #GitHub Repositority path print
+      - name: Print GitHub Repository Path
+        run: echo $GITHUB_REPOSITORY
+
+      # Test secret in GitHub vault
+      - name: Test Secret
+        run: echo ${{ secrets.TEST_SECRET_NAME }}
+
+      - name: Test the Tag Name
+        run: echo ${{ env.TAG_NAME }}
+
 
